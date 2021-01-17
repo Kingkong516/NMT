@@ -71,7 +71,7 @@ class CharDecoder(nn.Module):
         ### Hint: - Make sure padding characters do not contribute to the cross-entropy loss.
         ###       - char_sequence corresponds to the sequence x_1 ... x_{n+1} from the handout (e.g., <START>,m,u,s,i,c,<END>).
         self.cross_entropy_loss = nn.CrossEntropyLoss(reduction='none')
-        target_char_mask = (char_sequence[1:] != self.target_vocab.char2id['<pad>']).view(-1).float()
+        target_char_mask = (char_sequence[1:] != self.target_vocab.char2id['<pad>']).contiguous().view(-1).float()
         score, dec_hidden = self.forward(char_sequence[:-1],dec_hidden)
         loss = self.cross_entropy_loss(score.reshape(-1,len(self.target_vocab.char2id)),char_sequence[1:].reshape(-1))*target_char_mask
         return loss.sum()
