@@ -1,2 +1,2 @@
 # NMT
-Exercise on NMT (Stanford CS224 Assignment 5)
+Exercise on NLP (Stanford CS224 Assignment 5 - Neural Machine Translation)
